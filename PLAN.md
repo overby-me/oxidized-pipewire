@@ -15,7 +15,9 @@ Nix checks comparing rust-pipewire output against the reference C
 
 ## Current Status
 
-**861/861 Nix-level tests passing**, plus the in-tree Rust unit tests:
+**866/866 Nix-level tests passing** (milestone M14), plus the in-tree Rust
+unit tests. Merged into `main` on 2026-07-16; further work (M15+) happens on
+`main` via feature bookmarks. The suite breaks down as:
 
 - ~750 byte-identical option-parsing comparison tests across every
   user-facing tool (`spa-json-dump`, every `pw-*`/`pipewire*`/`spa-*`
@@ -597,7 +599,9 @@ rust-pipewire" message and exit 0 (so package install scripts that probe
 
 ## Workflow
 
-1. Pick the next failing test from `nix flake check`.
+1. Pick the next failing test from `just check` (never plain
+   `nix flake check`: it OOMs on this tree; `just check` runs the
+   bounded-memory `flake-check` tool).
 2. Reproduce with
    `nix build .#checks.x86_64-linux.rust-pipewire-test-<tool>-<name>`.
 3. Read `nix log <drv>` to see the diff. The test script lives at
@@ -606,7 +610,8 @@ rust-pipewire" message and exit 0 (so package install scripts that probe
 5. Once green, commit with message
    `feat(rust/pipewire): <short description> + <N> tests`
    (matching the existing rust-binutils style).
-6. Push the `pipewire-rust` bookmark.
+6. Push a feature bookmark and merge to `main` (the historical
+   `pipewire-rust` bookmark was merged on 2026-07-16).
 
 ## Milestones
 

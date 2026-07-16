@@ -158,12 +158,10 @@ pub fn main(raw_args: &[String]) -> i32 {
                             return 0;
                         }
                     }
-                    "-f" | "--format" => {
-                        if !is_valid_format(val) {
-                            eprintln!("error: bad format {val}");
-                            print_help(argv0);
-                            return 0;
-                        }
+                    "-f" | "--format" if !is_valid_format(val) => {
+                        eprintln!("error: bad format {val}");
+                        print_help(argv0);
+                        return 0;
                     }
                     "-q" | "--quality" => {
                         if let Some(c) = bad_quality(val) {
