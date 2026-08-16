@@ -186,7 +186,7 @@ Two complementary harnesses:
 
 ### Crate / module layout
 
-    rust/pipewire/
+    safety/oxidized/pipewire/
       Cargo.toml
       Cargo.lock
       default.nix              # rust-pipewire / rust-pipewire-dev packages + checks
@@ -359,7 +359,7 @@ passes.
       define `$REF` and `$RUST` for paired binaries, normalize store paths)
 - [x] First passing tests: `pw-cli --help` and `spa-json-dump --help`
       produce identical output (after binary-name normalization)
-- [x] Wire `./rust/pipewire` into `flake.nix`
+- [x] Wire `./safety/oxidized/pipewire` into `flake.nix`
 
 **Result**: 2/2 custom passing.
 
@@ -608,7 +608,7 @@ rust-pipewire" message and exit 0 (so package install scripts that probe
    `tests/<tool>/<name>.sh`.
 4. Implement the missing feature, rebuild.
 5. Once green, commit with message
-   `feat(rust/pipewire): <short description> + <N> tests`
+   `feat(safety/oxidized/pipewire): <short description> + <N> tests`
    (matching the existing rust-binutils style).
 6. Push a feature bookmark and merge to `main` (the historical
    `pipewire-rust` bookmark was merged on 2026-07-16).
